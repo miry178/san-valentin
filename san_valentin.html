@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi San Valentín 💘</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        min-height: 100vh;
+        overflow-x: hidden;
+        text-align: center;
+        color: #fff;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.15);
+        margin: 20px;
+        padding: 25px;
+        border-radius: 25px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        backdrop-filter: blur(8px);
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .photos {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 20px 0;
+        flex-wrap: wrap;
+    }
+
+    .photos img {
+        width: 45%;
+        max-width: 160px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .question {
+        font-size: 1.5rem;
+        margin: 20px 0;
+    }
+
+    button {
+        padding: 12px 22px;
+        border: none;
+        border-radius: 30px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 10px;
+        transition: transform 0.2s, background 0.3s;
+    }
+
+    .yes {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    .yes:hover {
+        background: #ff1e4d;
+        transform: scale(1.1);
+    }
+
+    .no {
+        background: #fff;
+        color: #ff4d6d;
+        position: absolute;
+    }
+
+    .message {
+        font-size: 1.6rem;
+        margin-top: 20px;
+        display: none;
+    }
+
+    /* Corazones flotando */
+    .heart {
+        position: fixed;
+        bottom: -20px;
+        font-size: 20px;
+        animation: float 6s linear infinite;
+        color: rgba(255,255,255,0.8);
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>💘 Para Ti, Mi Amor 💘</h1>
+
+    <p>
+        Desde que llegaste a mi vida, todo es más bonito.
+        Cada risa contigo, cada momento, cada recuerdo…
+        Gracias por ser tú y por hacerme tan feliz 💕
+    </p>
+
+    <div class="photos">
+        <img src="foto1.jpeg" alt="Nosotros">
+        <img src="foto2.jpeg" alt="Nuestro amor">
+    </div>
+
+    <div class="question">
+        ¿Quieres ser mi San Valentín? 💖
+    </div>
+
+    <div id="buttonArea" style="position: relative; height: 130px;">
+        <button class="yes" onclick="sayYes()">Sí 💕</button>
+        <button class="no" id="noBtn">No 😢</button>
+    </div>
+
+    <div class="message" id="message">
+        ¡Sabía que dirías que sí! 💘🥰  
+        Te amo con todo mi corazón ❤️
+    </div>
+</div>
+
+<script>
+function sayYes() {
+    document.getElementById("message").style.display = "block";
+}
+
+const noBtn = document.getElementById("noBtn");
+const area = document.getElementById("buttonArea");
+
+function moveButton() {
+    const maxX = area.clientWidth - noBtn.offsetWidth;
+    const maxY = area.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover", moveButton);
+
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 300);
+</script>
+
+</body>
+</html>
